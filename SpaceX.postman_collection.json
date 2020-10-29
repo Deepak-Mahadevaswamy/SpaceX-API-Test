@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "82f6e61d-f717-4f93-a86d-c4e0dde309cc",
+		"name": "SpaceX",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetLatestLaunches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3ad5d970-e6ee-4599-82b7-671d85a81428",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Success\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"console.log(\"Rocket values is --> \" + pm.environment.get(\"rocket\"));\r",
+							"\r",
+							"pm.test(\"Test rocket value\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.rocket).to.eql(pm.environment.get(\"rocket\"));\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Test fairings properties\", () => {\r",
+							"    pm.expect(jsonData.fairings.reused).to.eql(false); \r",
+							"    pm.expect(jsonData.fairings.recovery_attempt).to.eql(true);   \r",
+							"})\r",
+							"\r",
+							"pm.test(\"Crew to be empty\", () => {\r",
+							"    pm.expect(jsonData.crew).to.be.empty;\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Capsules to be empty\", () => {\r",
+							"    pm.expect(jsonData.capsules).to.be.empty;\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Failures to be empty\", () => {\r",
+							"    pm.expect(jsonData.failures).to.be.empty;\r",
+							"})\r",
+							"\r",
+							"console.log(\"Spacex-Name is --> \" + pm.environment.get(\"SpaceX-Name\"));\r",
+							"\r",
+							"pm.test(\"Response property matches environment variable\", function () {\r",
+							"  pm.expect(pm.response.json().name).to.eql(pm.environment.get(\"SpaceX-Name\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test core value\", function () {\r",
+							"  pm.expect(pm.response.json().cores[0].core).to.eql(pm.environment.get(\"core\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test Landing Attempt\", function () {\r",
+							"  pm.expect(pm.response.json().cores[0].landing_attempt).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test Landing Success\", function () {\r",
+							"  pm.expect(pm.response.json().cores[0].landing_success).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"console.log(\"Landing type is -> \" + pm.environment.get(\"landing_type\"));\r",
+							"pm.test(\"Test Landing Type is ASDS\", function () {\r",
+							"  pm.expect(pm.response.json().cores[0].landing_type).to.eql(pm.environment.get(\"landing_type\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test other Cores properties\", () => {\r",
+							"    pm.expect(jsonData.cores[0].gridfins).to.eql(true); \r",
+							"    pm.expect(jsonData.cores[0].legs).to.eql(true); \r",
+							"    pm.expect(jsonData.cores[0].reused).to.eql(true);  \r",
+							"\r",
+							"})\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.spacexdata.com/v4/launches/latest",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spacexdata",
+						"com"
+					],
+					"path": [
+						"v4",
+						"launches",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
