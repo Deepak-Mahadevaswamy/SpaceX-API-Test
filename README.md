@@ -9,4 +9,4 @@
   - Import the collection and environment json files in postman
   - Run the Get request https://api.spacexdata.com/v4/launches/latest to see the test results
 - Or you can use newman CLI tool to execute the tests. Here is the command you need to run
-  - newman run "SpaceX.postman_collection.json" -e "SpaceX.postman_environment.json"
+  - newman run "<path_to_collection_file>\SpaceX.postman_collection.json" -e "<path_to_environment_file>\SpaceX.postman_environment.json"
