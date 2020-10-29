@@ -1,1 +1,12 @@
 # SpaceX-API-Test
+- SpaceX URL Tested -  GET - https://api.spacexdata.com/v4/launches/latest
+- Added critical test cases to ensure the launch was successful and assertions on spacename, launchpad, landpad etc
+- Several other properties from the response has been tested as well
+- Created environment variavles for properties whose values might changes so that it can be updated in one place.
+- In total I have added 13 positive test scenarios to test this endpoint
+- Steps to Run the collection:
+  - Download the SpaceX.postman_collection and SpaceX.postman_environment json files
+  - Import the collection and environment json files in postman
+  - Run the Get request https://api.spacexdata.com/v4/launches/latest to see the test results
+- Or you can use newman CLI tool to execute the tests. Here is the command you need to run
+  - newman run "SpaceX.postman_collection.json" -e "SpaceX.postman_environment.json"
